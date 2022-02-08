@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { FC } from "react";
+import { useSelector } from "./redux/store";
+import { useDispatch } from "react-redux";
+import { additional, subtraction } from "./redux/counterSlice";
 
-function App() {
+const App: FC = () => {
+  const count = useSelector((state: any) => state.counter.count);
+  const dispatch = useDispatch();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Count: {count}</h1>
+      <button onClick={() => dispatch(additional(1))}>UP</button>
+      <button onClick={() => dispatch(subtraction(1))}>DOWN</button>
     </div>
   );
-}
+};
 
 export default App;
