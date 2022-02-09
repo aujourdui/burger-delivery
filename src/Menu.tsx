@@ -1,12 +1,10 @@
 import { useState, useEffect, FC } from "react";
 import axios from "axios";
-import { useSelector } from "./redux/store";
 import { useDispatch } from "react-redux";
 import { additional } from "./redux/counterSlice";
 
 const Menu: FC = () => {
   const [menus, setMenus] = useState([]);
-  const count = useSelector((state: any) => state.counter.count);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,14 +12,6 @@ const Menu: FC = () => {
       setMenus(res.data);
     });
   }, []);
-
-  // const addItem = (id) => {
-  //   window.confirm("Are you sure to add this item to cart?");
-  //   setItem((prevState) => {
-  //     return { ...prevState, id };
-  //   });
-  //   console.log(item);
-  // };
 
   const addItem = () => {
     window.confirm("Are you sure to add this item to cart?");
@@ -46,7 +36,6 @@ const Menu: FC = () => {
             <p className="text-2xl">{menu.title}</p>
             <p>price: {menu.price}</p>
             <p>{menu.description}</p>
-            <p>{count}</p>
           </div>
         ))}
       </div>
