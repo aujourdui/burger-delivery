@@ -2,6 +2,7 @@ import { useState, useEffect, FC } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { additional } from "./redux/counterSlice";
+import { addCart } from "./redux/changeCartSlice";
 
 const Menu: FC = () => {
   const [menus, setMenus] = useState([]);
@@ -13,9 +14,10 @@ const Menu: FC = () => {
     });
   }, []);
 
-  const addItem = () => {
+  const addItem = (menu) => {
     window.confirm("Are you sure to add this item to cart?");
     dispatch(additional(1));
+    dispatch(addCart(menu.title));
   };
 
   return (
@@ -30,7 +32,7 @@ const Menu: FC = () => {
           <div
             key={menu.id}
             className="ml-8 mr-8 mt-8 hover:opacity-90 hover:cursor-pointer"
-            onClick={() => addItem()}
+            onClick={() => addItem(menu)}
           >
             <img src={menu.image} alt="menu" />
             <p className="text-2xl">{menu.title}</p>

@@ -4,10 +4,12 @@ import {
   TypedUseSelectorHook,
 } from "react-redux";
 import counterReducer from "./counterSlice";
+import changeCartReducer from "./changeCartSlice";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    changeCart: changeCartReducer,
   },
 });
 
