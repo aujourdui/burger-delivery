@@ -20,9 +20,9 @@ const Header: FC = () => {
   // const item = useSelector((state: any) => state.changeCart.item);
   const sumPrice = useSelector((state: any) => state.sumPrice.price);
 
-  const deleteItem = (id) => {
-    dispatch(deleteCart(id));
-  };
+  // const deleteItem = (id) => {
+  //   dispatch(deleteCart(id));
+  // };
 
   const handleClick = () => {
     setOpen(!open);
@@ -56,7 +56,9 @@ const Header: FC = () => {
                         <p className="mr-2">{menu.title}</p>
                         <p className="text-xs">Price: ${menu.price}</p>
                       </div>
-                      <button onClick={() => deleteItem(menu.id)}>D</button>
+                      <button onClick={() => dispatch(deleteCart(menu))}>
+                        D
+                      </button>
                     </div>
                   </div>
                 )
