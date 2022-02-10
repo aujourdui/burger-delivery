@@ -25,7 +25,7 @@ const Menu: FC = () => {
   return (
     <>
       <div className="flex justify-center">
-        <div className="text-3xl font-bold underline ml-8 h-12">
+        <div className="text-3xl font-bold ml-8 h-12">
           <h1>Our menu</h1>
         </div>
       </div>

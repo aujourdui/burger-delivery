@@ -51,7 +51,7 @@ const Header: FC = () => {
               <ShoppingCartIcon fontSize="large" />
               {count}
             </button>
-            <div className={`block bg-rose-900 pl-2 ${open ? "hidden" : ""}`}>
+            <div className={`block bg-rose-900 ${open ? "hidden" : ""}`}>
               {menus.map(
                 (menu: {
                   id: Key;
@@ -60,7 +60,7 @@ const Header: FC = () => {
                 }) => (
                   <div key={menu.id}>
                     <div
-                      className={`flex justify-center items-center mr-4${
+                      className={`flex justify-center items-center pr-4 pl-2 hover:bg-rose-700${
                         open ? "hidden" : ""
                       }`}
                     >
@@ -75,7 +75,9 @@ const Header: FC = () => {
                   </div>
                 )
               )}
-              {sumPrice !== 0 && <p className="block">Total: ${sumPrice}</p>}
+              {sumPrice !== 0 && (
+                <p className="block pl-2">Total: ${sumPrice}</p>
+              )}
             </div>
           </div>
         </div>
