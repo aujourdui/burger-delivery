@@ -10,9 +10,13 @@ export const sumPriceSlice = createSlice({
       if (Number.isNaN(action.payload)) return;
       state.price += action.payload;
     },
+    editPrice: (state, action) => {
+      if (Number.isNaN(action.payload)) return;
+      state.price -= action.payload;
+    },
   },
 });
 
-export const { sumPrice } = sumPriceSlice.actions;
+export const { sumPrice, editPrice } = sumPriceSlice.actions;
 
 export default sumPriceSlice.reducer;
