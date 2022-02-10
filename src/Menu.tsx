@@ -1,8 +1,9 @@
 import { useState, useEffect, FC } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { additional } from "./redux/counterSlice";
+import { addCount } from "./redux/counterSlice";
 import { addCart } from "./redux/changeCartSlice";
+import { sumPrice } from "./redux/sumPriceSlice";
 
 const Menu: FC = () => {
   const [menus, setMenus] = useState([]);
@@ -14,10 +15,11 @@ const Menu: FC = () => {
     });
   }, []);
 
-  const addItem = (menu) => {
+  const addItem = (menu: any) => {
     window.confirm("Are you sure to add this item to cart?");
-    dispatch(additional(1));
-    dispatch(addCart(menu.title));
+    dispatch(addCount(1));
+    dispatch(addCart(menu));
+    dispatch(sumPrice(menu.price));
   };
 
   return (
@@ -36,7 +38,7 @@ const Menu: FC = () => {
           >
             <img src={menu.image} alt="menu" />
             <p className="text-2xl">{menu.title}</p>
-            <p>price: {menu.price}</p>
+            <p>Price: ${menu.price}</p>
             <p>{menu.description}</p>
           </div>
         ))}
