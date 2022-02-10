@@ -19,16 +19,21 @@ const Header: FC = () => {
           <h1>Logo</h1>
         </div>
         <div>
-          <p className="text-3xl float-right mr-8">Cart{count}</p>
-          {menus.map((menu) => (
-            <>
-              <div key={menu.id} className="mr-4">
-                <p>{menu.title}</p>
-                <p className="text-xs">Price: ${menu.price}</p>
-              </div>
-            </>
-          ))}
-          <p>Total: ${sumPrice}</p>
+          <div className="flex flex-col">
+            <p className="text-3xl m-auto mr-8">Cart{count}</p>
+            {menus.map((menu) => (
+              <>
+                <div className="flex justify-center items-center mr-4">
+                  <div key={menu.id} className="mr-auto">
+                    <p className="mr-2">{menu.title}</p>
+                    <p className="text-xs">Price: ${menu.price}</p>
+                  </div>
+                  <div>D</div>
+                </div>
+              </>
+            ))}
+            <p>Total: ${sumPrice}</p>
+          </div>
         </div>
       </div>
       <div></div>
