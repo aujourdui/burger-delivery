@@ -9,6 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import { useSelector } from "./redux/store";
 
+import { editCount } from "./redux/counterSlice";
 import { deleteCart } from "./redux/changeCartSlice";
 import { editPrice } from "./redux/sumPriceSlice";
 
@@ -31,6 +32,7 @@ const Header: FC = () => {
   }) => {
     dispatch(deleteCart(menu));
     dispatch(editPrice(menu.price));
+    dispatch(editCount(1));
   };
 
   return (

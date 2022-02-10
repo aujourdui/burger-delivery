@@ -10,9 +10,13 @@ export const counterSlice = createSlice({
       if (Number.isNaN(action.payload)) return;
       state.count += action.payload;
     },
+    editCount: (state, action) => {
+      if (Number.isNaN(action.payload)) return;
+      state.count -= action.payload;
+    },
   },
 });
 
-export const { addCount } = counterSlice.actions;
+export const { addCount, editCount } = counterSlice.actions;
 
 export default counterSlice.reducer;
