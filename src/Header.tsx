@@ -1,16 +1,32 @@
-import { FC } from "react";
+import {
+  FC,
+  useState,
+  Key,
+  ReactChild,
+  ReactFragment,
+  ReactPortal,
+} from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "./redux/store";
 
+import { deleteCart } from "./redux/changeCartSlice";
+
 const Header: FC = () => {
+  const [open, setOpen] = useState(true);
+  const dispatch = useDispatch();
+
   const count = useSelector((state: any) => state.counter.count);
   const menus = useSelector((state: any) => state.changeCart.item);
+  // const item = useSelector((state: any) => state.changeCart.item);
   const sumPrice = useSelector((state: any) => state.sumPrice.price);
 
-  // let arr = menus.map((obj) => obj[menus.price]);
+  // const deleteItem = (id) => {
+  //   dispatch(deleteCart(id));
+  // };
 
-  // const priceReducer = (accumulator, currentValue) =>
-  //   accumulator + currentValue;
-  // let i = arr.reduce(priceReducer);
+  const handleClick = () => {
+    setOpen(!open);
+  };
 
   return (
     <>
@@ -19,16 +35,37 @@ const Header: FC = () => {
           <h1>Logo</h1>
         </div>
         <div>
-          <p className="text-3xl float-right mr-8">Cart{count}</p>
-          {menus.map((menu) => (
-            <>
-              <div key={menu.id} className="mr-4">
-                <p>{menu.title}</p>
-                <p className="text-xs">Price: ${menu.price}</p>
-              </div>
-            </>
-          ))}
-          <p>Total: ${sumPrice}</p>
+          <div className="flex flex-col">
+            <button onClick={handleClick} className="text-3xl m-auto mr-8">
+              Cart{count}
+            </button>
+            <div className={`block bg-rose-900 pl-2 ${open ? "hidden" : ""}`}>
+              {menus.map(
+                (menu: {
+                  id: Key;
+                  title: boolean | ReactChild | ReactFragment | ReactPortal;
+                  price: boolean | ReactChild | ReactFragment | ReactPortal;
+                }) => (
+                  <div key={menu.id}>
+                    <div
+                      className={`flex justify-center items-center mr-4${
+                        open ? "hidden" : ""
+                      }`}
+                    >
+                      <div className="mr-auto">
+                        <p className="mr-2">{menu.title}</p>
+                        <p className="text-xs">Price: ${menu.price}</p>
+                      </div>
+                      <button onClick={() => dispatch(deleteCart(menu))}>
+                        D
+                      </button>
+                    </div>
+                  </div>
+                )
+              )}
+              <p>Total: ${sumPrice}</p>
+            </div>
+          </div>
         </div>
       </div>
       <div></div>

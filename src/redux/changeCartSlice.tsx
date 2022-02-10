@@ -12,7 +12,8 @@ export const changeCartSlice = createSlice({
     },
     deleteCart: (state: any, action) => {
       if (Number.isNaN(action.payload)) return;
-      state.item.pop(action.payload);
+      // state.item.pop(action.payload);
+      state.item = state.item.filter((t) => t.id !== action.payload.id);
     },
   },
 });
