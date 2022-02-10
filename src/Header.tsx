@@ -29,7 +29,7 @@ const Header: FC = () => {
             <button onClick={handleClick} className="text-3xl m-auto mr-8">
               Cart{count}
             </button>
-            <div className={`block bg-red-900 ${open ? "hidden" : ""}`}>
+            <div className={`block bg-rose-900 pl-2 ${open ? "hidden" : ""}`}>
               {menus.map(
                 (menu: {
                   id: Key;
@@ -46,7 +46,7 @@ const Header: FC = () => {
                         <p className="mr-2">{menu.title}</p>
                         <p className="text-xs">Price: ${menu.price}</p>
                       </div>
-                      <div>D</div>
+                      <button>D</button>
                     </div>
                   </>
                 )
