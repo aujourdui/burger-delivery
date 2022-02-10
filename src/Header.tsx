@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "./redux/store";
 
 import { deleteCart } from "./redux/changeCartSlice";
+import { editPrice } from "./redux/sumPriceSlice";
 
 const Header: FC = () => {
   const [open, setOpen] = useState(true);
@@ -17,15 +18,19 @@ const Header: FC = () => {
 
   const count = useSelector((state: any) => state.counter.count);
   const menus = useSelector((state: any) => state.changeCart.item);
-  // const item = useSelector((state: any) => state.changeCart.item);
   const sumPrice = useSelector((state: any) => state.sumPrice.price);
-
-  // const deleteItem = (id) => {
-  //   dispatch(deleteCart(id));
-  // };
 
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const deleteItem = (menu: {
+    id: Key;
+    title: boolean | ReactChild | ReactFragment | ReactPortal;
+    price: boolean | ReactChild | ReactFragment | ReactPortal;
+  }) => {
+    dispatch(deleteCart(menu));
+    dispatch(editPrice(menu.price));
   };
 
   return (
@@ -56,9 +61,7 @@ const Header: FC = () => {
                         <p className="mr-2">{menu.title}</p>
                         <p className="text-xs">Price: ${menu.price}</p>
                       </div>
-                      <button onClick={() => dispatch(deleteCart(menu))}>
-                        D
-                      </button>
+                      <button onClick={() => deleteItem(menu)}>D</button>
                     </div>
                   </div>
                 )
