@@ -1,16 +1,22 @@
-import { FC } from "react";
+import {
+  FC,
+  useState,
+  Key,
+  ReactChild,
+  ReactFragment,
+  ReactPortal,
+} from "react";
 import { useSelector } from "./redux/store";
 
 const Header: FC = () => {
+  const [open, setOpen] = useState(true);
   const count = useSelector((state: any) => state.counter.count);
   const menus = useSelector((state: any) => state.changeCart.item);
   const sumPrice = useSelector((state: any) => state.sumPrice.price);
 
-  // let arr = menus.map((obj) => obj[menus.price]);
-
-  // const priceReducer = (accumulator, currentValue) =>
-  //   accumulator + currentValue;
-  // let i = arr.reduce(priceReducer);
+  const handleClick = () => {
+    setOpen(!open);
+  };
 
   return (
     <>
@@ -20,19 +26,33 @@ const Header: FC = () => {
         </div>
         <div>
           <div className="flex flex-col">
-            <p className="text-3xl m-auto mr-8">Cart{count}</p>
-            {menus.map((menu) => (
-              <>
-                <div className="flex justify-center items-center mr-4">
-                  <div key={menu.id} className="mr-auto">
-                    <p className="mr-2">{menu.title}</p>
-                    <p className="text-xs">Price: ${menu.price}</p>
-                  </div>
-                  <div>D</div>
-                </div>
-              </>
-            ))}
-            <p>Total: ${sumPrice}</p>
+            <button onClick={handleClick} className="text-3xl m-auto mr-8">
+              Cart{count}
+            </button>
+            <div className={`block bg-red-900 ${open ? "hidden" : ""}`}>
+              {menus.map(
+                (menu: {
+                  id: Key;
+                  title: boolean | ReactChild | ReactFragment | ReactPortal;
+                  price: boolean | ReactChild | ReactFragment | ReactPortal;
+                }) => (
+                  <>
+                    <div
+                      className={`flex justify-center items-center mr-4${
+                        open ? "hidden" : ""
+                      }`}
+                    >
+                      <div key={menu.id} className="mr-auto">
+                        <p className="mr-2">{menu.title}</p>
+                        <p className="text-xs">Price: ${menu.price}</p>
+                      </div>
+                      <div>D</div>
+                    </div>
+                  </>
+                )
+              )}
+              <p>Total: ${sumPrice}</p>
+            </div>
           </div>
         </div>
       </div>
