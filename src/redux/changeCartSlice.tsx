@@ -12,7 +12,7 @@ export const changeCartSlice = createSlice({
     },
     deleteCart: (state: any, action) => {
       if (Number.isNaN(action.payload)) return;
-      state.item.pop(action.payload);
+      state.item.filter((_item: any, i: any) => i !== action.payload.index);
     },
   },
 });
