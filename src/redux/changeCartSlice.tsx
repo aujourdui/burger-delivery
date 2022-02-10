@@ -3,20 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 export const changeCartSlice = createSlice({
   name: "changeCart",
   initialState: {
-    count: 0,
+    item: [],
   },
   reducers: {
-    additional: (state, action) => {
+    addCart: (state, action) => {
       if (Number.isNaN(action.payload)) return;
-      state.count += action.payload;
+      state.item.push(action.payload);
     },
-    subtraction: (state, action) => {
+    deleteCart: (state: any, action) => {
       if (Number.isNaN(action.payload)) return;
-      state.count -= action.payload;
+      state.item.pop(action.payload);
     },
   },
 });
 
-export const { additional, subtraction } = changeCartSlice.actions;
+export const { addCart, deleteCart } = changeCartSlice.actions;
 
 export default changeCartSlice.reducer;
