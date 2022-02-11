@@ -5,13 +5,13 @@ import {
 } from "react-redux";
 import counterReducer from "./counterSlice";
 import changeCartReducer from "./changeCartSlice";
-import sumPriceReducer from "./sumPriceSlice";
+import changePriceReducer from "./changePriceSlice";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     changeCart: changeCartReducer,
-    sumPrice: sumPriceReducer,
+    changePrice: changePriceReducer,
   },
 });
 

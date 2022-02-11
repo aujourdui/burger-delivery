@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 export const changeCartSlice = createSlice({
   name: "changeCart",
   initialState: {
@@ -8,7 +7,18 @@ export const changeCartSlice = createSlice({
   reducers: {
     addCart: (state, action) => {
       if (Number.isNaN(action.payload)) return;
-      state.item.push(action.payload);
+      const isItemInCart = state.item.find(
+        (prod) => prod.id === action.payload.id
+      );
+      if (isItemInCart) {
+        state.item = state.item.map((prod) =>
+          prod.id === action.payload.id
+            ? { ...prod, quantity: prod.quantity + 1 }
+            : prod
+        );
+      } else {
+        state.item = [...state.item, { ...action.payload, quantity: 1 }];
+      }
     },
     deleteCart: (state: any, action) => {
       if (Number.isNaN(action.payload)) return;
@@ -18,7 +28,5 @@ export const changeCartSlice = createSlice({
     },
   },
 });
-
 export const { addCart, deleteCart } = changeCartSlice.actions;
-
 export default changeCartSlice.reducer;
