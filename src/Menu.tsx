@@ -16,16 +16,16 @@ const Menu: FC = () => {
   }, []);
 
   const addItem = (menu: any) => {
-    window.confirm("Are you sure to add this item to cart?");
+    // window.confirm("Are you sure to add this item to cart?");
     dispatch(addCount(1));
-    dispatch(addCart(menu));
     dispatch(sumPrice(menu.price));
+    dispatch(addCart(menu));
   };
 
   return (
     <>
       <div className="flex justify-center">
-        <div className="text-3xl font-bold underline ml-8 h-12">
+        <div className="text-3xl font-bold ml-8 h-12">
           <h1>Our menu</h1>
         </div>
       </div>

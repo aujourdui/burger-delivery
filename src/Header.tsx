@@ -8,7 +8,10 @@ import {
 } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "./redux/store";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
+import { editCount } from "./redux/counterSlice";
 import { deleteCart } from "./redux/changeCartSlice";
 import { editPrice } from "./redux/sumPriceSlice";
 
@@ -31,20 +34,24 @@ const Header: FC = () => {
   }) => {
     dispatch(deleteCart(menu));
     dispatch(editPrice(menu.price));
+    dispatch(editCount(1));
   };
 
   return (
     <>
       <div className="flex justify-between h-24 leading-8">
         <div className="text-3xl font-bold ml-8">
-          <h1>Logo</h1>
+          <h1>
+            <img src="/logo.png" alt="Logo" />
+          </h1>
         </div>
         <div>
           <div className="flex flex-col">
             <button onClick={handleClick} className="text-3xl m-auto mr-8">
-              Cart{count}
+              <ShoppingCartIcon fontSize="large" />
+              {count}
             </button>
-            <div className={`block bg-rose-900 pl-2 ${open ? "hidden" : ""}`}>
+            <div className={`block bg-rose-900 ${open ? "hidden" : ""}`}>
               {menus.map(
                 (menu: {
                   id: Key;
@@ -53,20 +60,26 @@ const Header: FC = () => {
                 }) => (
                   <div key={menu.id}>
                     <div
-                      className={`flex justify-center items-center mr-4${
+                      className={`flex justify-center items-center pr-4 pl-2 hover:bg-rose-700${
                         open ? "hidden" : ""
                       }`}
                     >
                       <div className="mr-auto">
                         <p className="mr-2">{menu.title}</p>
-                        <p className="text-xs">Price: ${menu.price}</p>
+                        <p className="text-xs">
+                          Price: ${menu.price} x {menu.id}
+                        </p>
                       </div>
-                      <button onClick={() => deleteItem(menu)}>D</button>
+                      <button onClick={() => deleteItem(menu)}>
+                        <DeleteForeverIcon />
+                      </button>
                     </div>
                   </div>
                 )
               )}
-              <p>Total: ${sumPrice}</p>
+              {sumPrice !== 0 && (
+                <p className="block pl-2">Total: ${sumPrice}</p>
+              )}
             </div>
           </div>
         </div>
