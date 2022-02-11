@@ -1,5 +1,6 @@
 import { useState, useEffect, FC } from "react";
 import axios from "axios";
+
 import { useDispatch } from "react-redux";
 import { addCount } from "./redux/counterSlice";
 import { addCart } from "./redux/changeCartSlice";
@@ -29,17 +30,26 @@ const Menu: FC = () => {
           <h1>Our menu</h1>
         </div>
       </div>
-      <div className="grid gap-4 grid-cols-3 grid-rows-3">
+      <div
+        className="
+      flex flex-col items-center
+      md:grid gap-4 md:grid-cols-2 md:grid-rows-3
+      lg:grid gap-4 lg:grid-cols-3 lg:grid-rows-2"
+      >
         {menus.map((menu) => (
           <div
             key={menu.id}
-            className="ml-8 mr-8 mt-8 hover:opacity-90 hover:cursor-pointer"
+            className="m-8 hover:opacity-90 hover:cursor-pointer"
             onClick={() => addItem(menu)}
           >
-            <img src={menu.image} alt="menu" />
-            <p className="text-2xl">{menu.title}</p>
-            <p>Price: ${menu.price}</p>
-            <p>{menu.description}</p>
+            <div>
+              <img src={menu.image} width="400" height="400" alt="menu" />
+            </div>
+            <div>
+              <p className="text-2xl">{menu.title}</p>
+              <p>Price: ${menu.price}</p>
+              <p>{menu.description}</p>
+            </div>
           </div>
         ))}
       </div>
