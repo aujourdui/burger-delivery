@@ -10,10 +10,14 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "./redux/store";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Button from "@mui/material/Button";
 
 import { editCount } from "./redux/counterSlice";
+import { resetCount } from "./redux/counterSlice";
 import { deleteCart } from "./redux/changeCartSlice";
+import { deleteAllCart } from "./redux/changeCartSlice";
 import { editPrice } from "./redux/changePriceSlice";
+import { resetPrice } from "./redux/changePriceSlice";
 
 const Header: FC = () => {
   const [open, setOpen] = useState(true);
@@ -39,6 +43,12 @@ const Header: FC = () => {
     dispatch(editCount(menu.quantity));
   };
 
+  const resetItem = () => {
+    dispatch(deleteAllCart([]));
+    dispatch(resetCount(0));
+    dispatch(resetPrice(0));
+  };
+
   return (
     <>
       <div className="flex justify-between h-24 leading-8">
@@ -50,10 +60,9 @@ const Header: FC = () => {
         <div>
           <div className="flex flex-col">
             <button onClick={handleClick} className="text-3xl m-auto mr-8">
-              <ShoppingCartIcon fontSize="large" />
-              {count}
+              <ShoppingCartIcon fontSize="large" />({count})
             </button>
-            <div className={`block bg-rose-900 ${open ? "hidden" : ""}`}>
+            <div className={`block bg-rose-rgba ${open ? "hidden" : ""}`}>
               {menus.map(
                 (menu: {
                   id: Key;
@@ -81,7 +90,22 @@ const Header: FC = () => {
                 )
               )}
               {sumPrice !== 0 && (
-                <p className="block pl-2">Total: ${sumPrice}</p>
+                <>
+                  <p className="block pl-2">Total: ${sumPrice}</p>
+                  <Button
+                    variant="contained"
+                    style={{ color: "#e0f2f1", backgroundColor: "#1a237e" }}
+                    onClick={resetItem}
+                  >
+                    Clear
+                  </Button>
+                  <Button
+                    variant="contained"
+                    style={{ color: "#e0f2f1", backgroundColor: "#004d40" }}
+                  >
+                    Checkout
+                  </Button>
+                </>
               )}
             </div>
           </div>

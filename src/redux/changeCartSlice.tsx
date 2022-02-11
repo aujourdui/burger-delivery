@@ -26,7 +26,11 @@ export const changeCartSlice = createSlice({
         (item: { id: any }) => item.id !== action.payload.id
       );
     },
+    deleteAllCart: (state: any, action) => {
+      if (Number.isNaN(action.payload)) return;
+      state.item = [];
+    },
   },
 });
-export const { addCart, deleteCart } = changeCartSlice.actions;
+export const { addCart, deleteCart, deleteAllCart } = changeCartSlice.actions;
 export default changeCartSlice.reducer;
