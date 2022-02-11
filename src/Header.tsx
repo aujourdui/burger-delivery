@@ -13,7 +13,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import { editCount } from "./redux/counterSlice";
 import { deleteCart } from "./redux/changeCartSlice";
-import { editPrice } from "./redux/sumPriceSlice";
+import { editPrice } from "./redux/changePriceSlice";
 
 const Header: FC = () => {
   const [open, setOpen] = useState(true);
@@ -21,7 +21,7 @@ const Header: FC = () => {
 
   const count = useSelector((state: any) => state.counter.count);
   const menus = useSelector((state: any) => state.changeCart.item);
-  const sumPrice = useSelector((state: any) => state.sumPrice.price);
+  const sumPrice = useSelector((state: any) => state.changePrice.price);
 
   const handleClick = () => {
     setOpen(!open);
@@ -30,11 +30,13 @@ const Header: FC = () => {
   const deleteItem = (menu: {
     id: Key;
     title: boolean | ReactChild | ReactFragment | ReactPortal;
-    price: boolean | ReactChild | ReactFragment | ReactPortal;
+    price: boolean | ReactChild | ReactFragment | ReactPortal | any;
+    quantity: boolean | ReactChild | ReactFragment | ReactPortal | any;
   }) => {
+    const price = `${menu.quantity * menu.price}`;
     dispatch(deleteCart(menu));
-    dispatch(editPrice(menu.price));
-    dispatch(editCount(1));
+    dispatch(editPrice(price));
+    dispatch(editCount(menu.quantity));
   };
 
   return (
@@ -57,6 +59,7 @@ const Header: FC = () => {
                   id: Key;
                   title: boolean | ReactChild | ReactFragment | ReactPortal;
                   price: boolean | ReactChild | ReactFragment | ReactPortal;
+                  quantity: boolean | ReactChild | ReactFragment | ReactPortal;
                 }) => (
                   <div key={menu.id}>
                     <div
@@ -67,7 +70,7 @@ const Header: FC = () => {
                       <div className="mr-auto">
                         <p className="mr-2">{menu.title}</p>
                         <p className="text-xs">
-                          Price: ${menu.price} x {menu.id}
+                          Price: ${menu.price} x {menu.quantity}
                         </p>
                       </div>
                       <button onClick={() => deleteItem(menu)}>

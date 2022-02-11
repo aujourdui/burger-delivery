@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const sumPriceSlice = createSlice({
-  name: "sumPrice",
+export const changePriceSlice = createSlice({
+  name: "changePrice",
   initialState: {
     price: 0,
   },
@@ -17,6 +17,6 @@ export const sumPriceSlice = createSlice({
   },
 });
 
-export const { sumPrice, editPrice } = sumPriceSlice.actions;
+export const { sumPrice, editPrice } = changePriceSlice.actions;
 
-export default sumPriceSlice.reducer;
+export default changePriceSlice.reducer;
