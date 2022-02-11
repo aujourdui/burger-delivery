@@ -16,10 +16,10 @@ const Menu: FC = () => {
   }, []);
 
   const addItem = (menu: any) => {
-    window.confirm("Are you sure to add this item to cart?");
+    // window.confirm("Are you sure to add this item to cart?");
     dispatch(addCount(1));
-    dispatch(addCart(menu));
     dispatch(sumPrice(menu.price));
+    dispatch(addCart(menu));
   };
 
   return (

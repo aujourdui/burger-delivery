@@ -66,7 +66,9 @@ const Header: FC = () => {
                     >
                       <div className="mr-auto">
                         <p className="mr-2">{menu.title}</p>
-                        <p className="text-xs">Price: ${menu.price}</p>
+                        <p className="text-xs">
+                          Price: ${menu.price} x {menu.id}
+                        </p>
                       </div>
                       <button onClick={() => deleteItem(menu)}>
                         <DeleteForeverIcon />
