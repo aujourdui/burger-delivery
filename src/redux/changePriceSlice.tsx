@@ -14,9 +14,13 @@ export const changePriceSlice = createSlice({
       if (Number.isNaN(action.payload)) return;
       state.price -= action.payload;
     },
+    resetPrice: (state, action) => {
+      if (Number.isNaN(action.payload)) return;
+      state.price = 0;
+    },
   },
 });
 
-export const { sumPrice, editPrice } = changePriceSlice.actions;
+export const { sumPrice, editPrice, resetPrice } = changePriceSlice.actions;
 
 export default changePriceSlice.reducer;
