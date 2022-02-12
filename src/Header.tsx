@@ -51,7 +51,7 @@ const Header: FC = () => {
 
   return (
     <>
-      <div className="flex justify-between h-24 leading-8">
+      <div className="flex justify-between h-24 leading-8 sticky top-0 z-[2]">
         <div className="text-3xl font-bold ml-8">
           <h1>
             <img src="/logo.png" alt="Logo" />
