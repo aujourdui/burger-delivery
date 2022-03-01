@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "CommonJS",
+    "module": "commonjs",
+    "types": ["node"],
+    "lib": ["es6"],
     "sourceMap": true,
-    "outDir": "./dist",
     "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node"
   }
+  // "include": ["./**/*.tsx", "./**/*.jsx"]
 }
