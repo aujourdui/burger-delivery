@@ -2,7 +2,7 @@
   "name": "burger-delivery",
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "server.tsx",
+  "main": "server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec node --loader ts-node/esm ./server.ts "
@@ -19,8 +19,9 @@
   },
   "homepage": "https://github.com/aujourdui/burger-deliverly#readme",
   "dependencies": {
-    "@types/node": "^17.0.19",
+    "@types/mongodb": "^4.0.7",
     "express": "^4.17.3",
+    "mongodb": "^4.4.0",
     "mongoose": "^6.2.3",
     "nodemon": "^2.0.15",
     "ts-node": "^10.5.0",
@@ -31,6 +32,7 @@
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
-    "@types/express": "^4.17.13"
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.21"
   }
 }
