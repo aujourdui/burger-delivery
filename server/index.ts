@@ -16,7 +16,7 @@ app.use(cors());
 
 app.use("/burgers", burgerRoutes);
 
-app.get("/test", (req, res) => {
+app.get("/test", (_req, res) => {
   res.json({
     author: "test",
     message: "server test",
