@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import burgerRoutes from "./routes/burgers";
 
 dotenv.config();
 const env = process.env;
@@ -13,8 +14,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-app.get("/test", (req, res) => {
-  // res.send('server healthy.');
+app.use("/burgers", burgerRoutes);
+
+app.get("/test", (_req, res) => {
   res.json({
     author: "test",
     message: "server test",

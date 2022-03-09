@@ -10,9 +10,11 @@ const Menu: FC = () => {
   const [menus, setMenus] = useState([]);
   const dispatch = useDispatch();
 
+  // .get("https://jsonblob.com/api/940706479976235008")
+
   useEffect(() => {
     axios
-      .get("https://jsonblob.com/api/940706479976235008")
+      .get("/burgers/")
       .then((res) => {
         setMenus(res.data);
       })
