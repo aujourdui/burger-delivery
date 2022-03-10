@@ -2,9 +2,9 @@ import { useState, useEffect, FC } from "react";
 import axios from "axios";
 
 import { useDispatch } from "react-redux";
-import { addCount } from "./redux/counterSlice";
-import { addCart } from "./redux/changeCartSlice";
-import { sumPrice } from "./redux/changePriceSlice";
+import { addCount } from "../redux/counterSlice";
+import { addCart } from "../redux/changeCartSlice";
+import { sumPrice } from "../redux/changePriceSlice";
 
 const Menu: FC = () => {
   const [menus, setMenus] = useState([]);
