@@ -10,17 +10,25 @@ const Menu: FC = () => {
   const [menus, setMenus] = useState([]);
   const dispatch = useDispatch();
 
+  // .get("https://jsonblob.com/api/940706479976235008")
+
   useEffect(() => {
-    axios.get("https://jsonblob.com/api/940706479976235008").then((res) => {
-      setMenus(res.data);
-    });
+    axios
+      .get("/burgers/")
+      .then((res) => {
+        setMenus(res.data);
+      })
+      .catch((err) => {
+        console.error(new Error(err));
+      });
   }, []);
 
   const addItem = (menu: any) => {
-    // window.confirm("Are you sure to add this item to cart?");
-    dispatch(addCount(1));
-    dispatch(sumPrice(menu.price));
-    dispatch(addCart(menu));
+    if (window.confirm("Are you sure to add this item to cart?") === true) {
+      dispatch(addCount(1));
+      dispatch(sumPrice(menu.price));
+      dispatch(addCart(menu));
+    } else return null;
   };
 
   return (
