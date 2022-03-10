@@ -7,17 +7,17 @@ import {
   ReactPortal,
 } from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "./redux/store";
+import { useSelector } from "../redux/store";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Button from "@mui/material/Button";
 
-import { editCount } from "./redux/counterSlice";
-import { resetCount } from "./redux/counterSlice";
-import { deleteCart } from "./redux/changeCartSlice";
-import { deleteAllCart } from "./redux/changeCartSlice";
-import { editPrice } from "./redux/changePriceSlice";
-import { resetPrice } from "./redux/changePriceSlice";
+import { editCount } from "../redux/counterSlice";
+import { resetCount } from "../redux/counterSlice";
+import { deleteCart } from "../redux/changeCartSlice";
+import { deleteAllCart } from "../redux/changeCartSlice";
+import { editPrice } from "../redux/changePriceSlice";
+import { resetPrice } from "../redux/changePriceSlice";
 
 const Header: FC = () => {
   const [open, setOpen] = useState(true);
