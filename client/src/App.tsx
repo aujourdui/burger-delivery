@@ -1,7 +1,7 @@
 import { FC } from "react";
-import Header from "./Header";
-import Title from "./Title";
-import Menu from "./Menu";
+import Header from "./components/Header";
+import Title from "./components/Title";
+import Menu from "./components/Menu";
 
 const App: FC = () => {
   return (
