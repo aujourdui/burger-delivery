@@ -6,12 +6,14 @@ import {
 import counterReducer from "./counterSlice";
 import changeCartReducer from "./changeCartSlice";
 import changePriceReducer from "./changePriceSlice";
+import handleBurgerReducer from "./handleBurgerSlice";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     changeCart: changeCartReducer,
     changePrice: changePriceReducer,
+    handleBurger: handleBurgerReducer,
   },
 });
 
