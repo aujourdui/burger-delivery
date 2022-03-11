@@ -1,27 +1,26 @@
-import { useState, useEffect, FC } from "react";
-import axios from "axios";
+import { FC } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCount } from "../redux/counterSlice";
 import { addCart } from "../redux/changeCartSlice";
 import { sumPrice } from "../redux/changePriceSlice";
+import { getBurgers } from "../redux/handleBurgerSlice";
+import * as api from "../api/index";
 
 const Menu: FC = () => {
-  const [menus, setMenus] = useState([]);
   const dispatch = useDispatch();
+  const burgers = useSelector((state: any) => state.handleBurger.burgers);
 
-  // .get("https://jsonblob.com/api/940706479976235008")
+  const fetchBurger = async () => {
+    try {
+      const { data } = await api.fetchBurgers();
+      dispatch(getBurgers(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  useEffect(() => {
-    axios
-      .get("/burgers/")
-      .then((res) => {
-        setMenus(res.data);
-      })
-      .catch((err) => {
-        console.error(new Error(err));
-      });
-  }, []);
+  fetchBurger();
 
   const addItem = (menu: any) => {
     if (window.confirm("Are you sure to add this item to cart?") === true) {
@@ -44,7 +43,7 @@ const Menu: FC = () => {
       md:grid gap-4 md:grid-cols-2 md:grid-rows-3
       lg:grid gap-4 lg:grid-cols-3 lg:grid-rows-2"
       >
-        {menus.map((menu) => (
+        {burgers.map((menu) => (
           <div
             key={menu.id}
             className="m-8 hover:opacity-90 hover:cursor-pointer"
